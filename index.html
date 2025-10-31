@@ -1,242 +1,312 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💐 Un message du cœur 💖</title>
-  <style>
-    /* Styles généraux */
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #fff0f6, #f9f7ff);
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      overflow-x: hidden; /* Empêche les débordements horizontaux */
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Surprise 🎁 — Pour toi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#fff6fb;
+    --bg2:#fffaf2;
+    --rose:#ff6b9a;
+    --rose-2:#ff95bd;
+    --gold:#e6b85c;
+    --text:#2b2230;
+    --card:#ffffffcc;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Poppins",system-ui,Arial;
+    background: radial-gradient(circle at 10% 20%, #fff2f6 0%, var(--bg1) 30%), linear-gradient(180deg,var(--bg2) 0%, #fff 100%);
+    color:var(--text);
+    overflow-x:hidden;
+  }
 
-    h1 {
-      font-size: 3rem;
-      color: #d17bff;
-      margin-top: 2rem;
-      text-shadow: 2px 2px 8px rgba(209, 123, 255, 0.3);
-      animation: fadeInDown 2s ease;
-    }
+  /* overlay (cadeau) */
+  .overlay{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,240,245,0.78));
+    z-index:999;
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .gift-card{
+    width:min(760px,94%);
+    background:linear-gradient(180deg,#fff,#fff8fb);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 30px 60px rgba(200,120,150,0.14);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .ribbon{
+    position:absolute;left:50%;top:6%;transform:translateX(-50%);
+    width:220px;height:44px;background:linear-gradient(90deg,var(--rose),var(--rose-2));
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(255,100,150,0.12);
+    color:white;font-weight:700;padding-top:10px;font-size:1.05rem;
+  }
+  .open-btn{
+    margin-top:20px;
+    background:linear-gradient(180deg,var(--rose),var(--rose-2));
+    color:white;border:none;padding:12px 20px;border-radius:12px;
+    font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(255,100,150,0.18);
+    transition:transform .12s ease;
+  }
+  .open-btn:active{transform:scale(.98)}
 
-    .message {
-      max-width: 90%;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      font-size: 1.3rem;
-      color: #444;
-      line-height: 1.8;
-      animation: fadeIn 3s ease;
-    }
+  /* main content */
+  .wrap{max-width:1000px;margin:40px auto;padding:26px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,250,250,0.9));
+    border-radius:18px;padding:36px;box-shadow:0 30px 60px rgba(50,20,40,0.06);position:relative;
+    overflow:hidden;
+  }
 
-    .signature {
-      margin-top: 2rem;
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: #d17bff;
-      text-shadow: 1px 1px 4px rgba(209, 123, 255, 0.3);
-    }
+  h1{
+    font-family:"Playfair Display",serif;font-size:2.6rem;margin:0;color:var(--rose);
+    text-align:center;letter-spacing:0.4px;
+  }
+  .subtitle{color:#6b5166;margin-top:6px;font-weight:500;text-align:center}
 
-    /* Style pour la section des messages de motivation (avec effet verre) */
-    .motivational-container {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.3);
-      padding: 15px;
-      font-size: 1.4rem;
-      color: #ff4081;
-      text-align: center;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 20px 20px 0 0;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
+  .content{
+    display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:22px;align-items:start;
+  }
 
-    .motivational-container:hover {
-      background: rgba(255, 255, 255, 0.5);
-    }
+  .text{
+    background:var(--card);padding:20px;border-radius:14px;line-height:1.8;font-size:1.1rem;color:#4a3947;
+  }
 
-    /* Animation de fade-in pour le texte */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .side{
+    display:flex;flex-direction:column;gap:14px;
+  }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  /* cake + gift visual */
+  .box{
+    background:linear-gradient(180deg,#fff,#fffefc);padding:16px;border-radius:14px;box-shadow:0 10px 30px rgba(200,120,150,0.06);
+    display:flex;flex-direction:column;gap:12px;align-items:center;
+  }
+  .cake{
+    width:220px;height:160px;border-radius:12px;position:relative;overflow:visible;
+  }
+  .candle{position:absolute;left:50%;transform:translateX(-50%);top:-8px;width:8px;height:30px;background:linear-gradient(180deg,#fff7c8,#ffd86a);border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+  .flame{position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:12px;height:20px;border-radius:50% 50% 40% 40%;background:linear-gradient(180deg,#ffd66b,#ff8a6b);filter:drop-shadow(0 2px 6px rgba(255,140,120,0.5))}
+  .cake-base{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;width:88%;height:110px;background:linear-gradient(180deg,#ffdfe8,#ffbfd2);border-radius:12px;border:6px solid #fff7f9;box-shadow:0 8px 20px rgba(200,80,130,0.08)}
+  .sprinkles{position:absolute;left:50%;transform:translateX(-50%);bottom:56px;width:70%;height:12px;display:flex;justify-content:space-around;gap:3px}
+  .sprinkles span{width:8px;height:8px;border-radius:3px;background:var(--gold);display:inline-block;box-shadow:0 2px 4px rgba(0,0,0,0.06)}
 
-    /* Génération d'étoiles et de confettis */
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-    }
+  /* confetti canvas sits over whole */
+  #confetti {position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:550}
 
-    .star {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background-color: #d17bff;
-      border-radius: 50%;
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
-    }
+  /* ribbons falling */
+  .ribbon-strip{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:500;overflow:hidden}
+  .ribbon-el{position:absolute;width:10px;height:140px;background:linear-gradient(180deg,var(--rose),var(--rose-2));opacity:0.9;border-radius:6px;transform:rotate(15deg);animation:fallRibbon 6s linear infinite}
+  @keyframes fallRibbon{0%{transform:translateY(-200px) rotate(-10deg)}100%{transform:translateY(120vh) rotate(30deg)}}
 
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100vh); opacity: 0; }
-    }
+  /* signature highlight */
+  .signature{margin-top:18px;font-weight:700;color:var(--rose);font-size:1.05rem;text-align:right}
 
-    .confetti {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background-color: #ff4081;
-      border-radius: 50%;
-      animation: confettiFall 3s linear infinite;
-    }
+  /* responsive */
+  @media (max-width:920px){
+    .content{grid-template-columns:1fr}
+    .side{order:2}
+    .text{order:1}
+    .cake{width:200px;height:140px}
+  }
+  @media (max-width:480px){
+    h1{font-size:1.9rem}
+    .gift-card{padding:18px}
+    .open-btn{padding:10px 14px}
+    .text{font-size:1rem;padding:16px}
+    .signature{text-align:center}
+  }
 
-    @keyframes confettiFall {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(300px) rotate(45deg); }
-      100% { transform: translateY(600px) rotate(90deg); opacity: 0; }
-    }
-
-    /* Styles audio */
-    audio {
-      display: none;
-    }
-
-    /* Responsivité pour les petits écrans */
-    @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      .message { font-size: 1.1rem; margin: 1rem; padding: 1rem; }
-      .motivational-container {
-        font-size: 1.2rem; /* Réduire la taille du texte sur mobile */
-        padding: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 1.8rem; }
-      .message { font-size: 1rem; padding: 0.8rem; }
-      .signature { font-size: 1.2rem; }
-    }
-  </style>
+  /* subtle glow when opened */
+  .opened .card{box-shadow:0 40px 100px rgba(230,160,190,0.12)}
+  .fade-out{opacity:0;transform:scale(.98);pointer-events:none}
+  .sparkle{position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,220,240,0.9), transparent 40%);filter:blur(18px);opacity:0.9}
+</style>
 </head>
 <body>
 
-  <h1>💐 Un message du cœur 💖</h1>
+<!-- confetti canvas -->
+<canvas id="confetti"></canvas>
+<!-- ribbon layer -->
+<div class="ribbon-strip" id="ribbons"></div>
 
-  <div class="message">
-    <p>
-      Aujourd’hui, j’avais juste envie de te dire à quel point je suis fier de toi.  
-      Fier de la personne que tu es devenue, de ta détermination, de ton courage, et de ta lumière.
-    </p>
+<!-- initial overlay "cadeau" -->
+<div class="overlay" id="overlay">
+  <div class="gift-card" role="dialog" aria-label="Ouvre ton cadeau">
+    <div class="ribbon">Surprise spéciale 🎁</div>
+    <div style="margin-top:18px">
+      <h2 style="font-family:'Playfair Display',serif;margin:6px 0;color:var(--rose)">Une surprise rien que pour toi</h2>
+      <p style="color:#6b5166;margin:0 8px">Clique sur le bouton pour ouvrir ton cadeau — souffle un peu, puis profite.</p>
+      <button class="open-btn" id="openBtn">Ouvrir le cadeau 🎁</button>
+    </div>
+    <div style="font-size:.85rem;color:#a07a94;margin-top:12px">Musique douce et animations activées quand tu ouvres.</div>
+  </div>
+</div>
 
-    <p>
-      Le bac approche, et je sais que c’est pas facile. Il y a la fatigue, le stress, les doutes…  
-      Mais malgré tout ça, tu continues d’avancer. Tu tiens bon, tu gardes la tête haute, et ça, c’est une vraie force.  
-      Peu de gens ont ton mental, ta patience, ton cœur.
-    </p>
+<div class="wrap">
+  <div class="card" id="mainCard" aria-live="polite">
+    <div class="sparkle" aria-hidden="true"></div>
+    <h1>💐 Un message du cœur 💖</h1>
+    <div class="subtitle">Pour toi, avec fierté, amour et confiance.</div>
 
-    <p>
-      Tu mérites tellement de réussir, pas juste parce que tu travailles dur,  
-      mais parce que tu le fais avec sincérité, avec passion, sans jamais tricher avec toi-même.  
-      Et même dans les moments où t’as envie de tout lâcher, tu continues à sourire —  
-      c’est ce sourire-là qui montre à quel point t’es exceptionnelle.
-    </p>
+    <div class="content">
+      <div class="text" id="mainText">
+        <p>
+          Aujourd’hui c’est une journée spéciale — c’est ta journée. Avant tout le monde, je veux que tu saches combien je suis fier de toi.
+          De la force que tu montres quand tu révises tard, de la façon dont tu relèves la tête face au stress, de ta persévérance qui illumine tout autour.
+        </p>
 
-    <p>
-      Peu importe le résultat, souviens-toi que tu as déjà gagné.  
-      Gagné en maturité, en force, en confiance.  
-      Le bac, c’est juste une étape. La vie, elle, t’attend avec des milliers de réussites à ton nom.
-    </p>
+        <p>
+          Tu as ce feu intérieur qui transforme les doutes en courage. Le bac n’est qu’un moment : important, exigeant, mais seulement une étape
+          parmi tant d’autres où tu vas encore prouver ta valeur. Même quand la fatigue pèse, tu continues d’avancer — et ça, c’est la vraie victoire.
+        </p>
 
-    <p>
-      Alors lève la tête, respire, et avance sans peur.  
-      Parce que tout ce que tu cherches est déjà en toi.  
-      Et moi, je serai toujours là, à te soutenir, à croire en toi, à te rappeler à quel point tu es capable de tout.
-    </p>
+        <p>
+          Je veux que tu gardes ça au fond de toi : peu importe l’issue, tu es déjà une championne. Parce que tu as travaillé,
+          parce que tu as tenu, parce que tu as donné le meilleur de toi. Ta famille est fière, tes proches te soutiennent, et moi je suis là, à chaque pas.
+        </p>
 
-    <p>
-      Continue de briller, continue d’être toi.  
-      Tu rends ta famille fière, et moi encore plus.
-    </p>
+        <p>
+          Alors respire. Offre-toi une pause quand tu en as besoin. Crois en toi comme je crois en toi. L’avenir t’appartient et il est rempli de belles choses.
+          Garde ton sourire, cette bonté, cette force douce qui te rend unique.
+        </p>
 
-    <div class="signature">
-      💜 Ton cousin qui t’admire et qui t’aime,<br>
-      <strong>Cheikh</strong>
+        <p class="signature">Avec tout mon amour, <br><strong>Ton cousin qui t’admire — Cheikh 💜</strong></p>
+      </div>
+
+      <div class="side">
+        <div class="box" aria-hidden="true">
+          <!-- cake visual -->
+          <div class="cake" role="img" aria-label="Gâteau d'anniversaire">
+            <div class="flame" id="flame"></div>
+            <div class="candle"></div>
+            <div class="sprinkles" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="cake-base"></div>
+          </div>
+          <div style="font-weight:600;color:#6b5166">Joyeux anniversaire 🎉</div>
+          <div style="font-size:.95rem;color:#7a5a6b">Un petit cadeau virtuel pour te motiver avant le grand jour.</div>
+        </div>
+
+        <div class="box" style="text-align:center">
+          <div style="font-weight:700;color:var(--rose);font-size:1.05rem">Petit rituel</div>
+          <div style="font-size:.95rem;color:#6b5166">Avant chaque session, prends 30 secondes pour respirer profondément — ferme les yeux et pense à ta victoire.</div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="stars"></div>
+<!-- audio (autoplay on user interaction) -->
+<audio id="bgMusic" loop preload="auto">
+  <!-- Musique libre (Pixabay) — si bloquée, le son démarrera après la 1re interaction -->
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8fbe6ce54d.mp3?filename=soft-piano-music-14304.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Zone des petits messages de motivation avec effet verre -->
-  <div class="motivational-container" id="motivationalMessages">
-    <p id="message"></p>
-  </div>
+<script>
+/* Helper: start sequence on click */
+const overlay = document.getElementById('overlay');
+const openBtn = document.getElementById('openBtn');
+const confettiCanvas = document.getElementById('confetti');
+const ribbonsLayer = document.getElementById('ribbons');
+const bgMusic = document.getElementById('bgMusic');
+const mainCard = document.getElementById('mainCard');
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_5f289a0503.mp3?filename=soft-piano-ambient-112191.mp3" type="audio/mpeg">
-  </audio>
+openBtn.addEventListener('click', () => {
+  // play music (may require user gesture — click qualifies)
+  bgMusic.play().catch(()=>{});
+  // create ribbons
+  spawnRibbons(8);
+  // launch confetti burst
+  burstConfetti(140);
+  // animate overlay out
+  overlay.classList.add('fade-out');
+  setTimeout(()=>overlay.style.display='none', 600);
+  // add glow class
+  document.documentElement.classList.add('opened');
+});
 
-  <script>
-    // Générer les étoiles
-    function createStar() {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = 5 + Math.random() * 5 + 's';
-      document.querySelector('.stars').appendChild(star);
-      setTimeout(() => star.remove(), 10000);
-    }
-    setInterval(createStar, 200);
+/* Confetti (canvas) */
+const ctx = confettiCanvas.getContext('2d');
+function resizeCanvas(){ confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
+window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
-    // Générer les confettis
-    function createConfetti() {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.animationDuration = 3 + Math.random() * 2 + 's';
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 3000);
-    }
-    setInterval(createConfetti, 300);
+let confettis = [];
+function burstConfetti(n){
+  for(let i=0;i<n;i++){
+    confettis.push({
+      x: innerWidth/2 + (Math.random()-0.5)*200,
+      y: innerHeight/2 + (Math.random()-0.5)*60,
+      vx: (Math.random()-0.5)*8,
+      vy: (Math.random()*-8)-2,
+      size: 6+Math.random()*10,
+      rot: Math.random()*360,
+      vr: (Math.random()-0.5)*12,
+      color: randomColor()
+    });
+  }
+  // allow them to fall for a while
+  setTimeout(()=>{ confettis = confettis.concat([]) }, 3500);
+}
+function randomColor(){
+  const palette = ['#ffd166','#ff8fab','#ffd4e1','#ffb6d5','#ffd7a8','#fff3b0'];
+  return palette[Math.floor(Math.random()*palette.length)];
+}
+function updateConfetti(){
+  ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  for(let i=confettis.length-1;i>=0;i--){
+    const p = confettis[i];
+    p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.rot += p.vr;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+    ctx.restore();
+    if(p.y > confettiCanvas.height + 60) confettis.splice(i,1);
+  }
+  requestAnimationFrame(updateConfetti);
+}
+updateConfetti();
 
-    // Petits messages de motivation
-    const messages = [
-      "Tu as tout ce qu’il faut pour réussir, n’oublie jamais ça !",
-      "Les défis te rendent plus forte, tu es prête pour le grand saut !",
-      "Tout le monde est fier de toi, et ça, c’est déjà une victoire.",
-      "Rappelle-toi, la réussite est dans ton cœur.",
-      "Ne lâche rien, tu es sur le bon chemin !",
-      "La réussite, c’est un pas après l’autre, et tu es sur la bonne voie."
-    ];
+/* Ribbons */
+function spawnRibbons(count=6){
+  for(let i=0;i<count;i++){
+    const r = document.createElement('div');
+    r.className = 'ribbon-el';
+    r.style.left = (Math.random()*100) + 'vw';
+    r.style.top = (-Math.random()*200 - 60) + 'px';
+    r.style.animationDuration = (4 + Math.random()*4) + 's';
+    r.style.transform = 'rotate(' + (Math.random()*60 - 20) + 'deg)';
+    ribbonsLayer.appendChild(r);
+    // remove after animation cycle to avoid DOM clutter
+    setTimeout(()=>r.remove(), 9000);
+  }
+}
 
-    function showMotivationalMessage() {
-      const messageElement = document.getElementById("message");
-      messageElement.innerText = messages[Math.floor(Math.random() * messages.length)];
-    }
+/* subtle repeat confetti over time */
+setInterval(()=>{ burstConfetti(20); }, 9000);
 
-    setInterval(showMotivationalMessage, 4000); // Changer les messages toutes les 4 secondes
-  </script>
+/* small flame flicker on cake */
+const flame = document.getElementById('flame');
+let flameScale = 1;
+setInterval(()=> {
+  flameScale = 1 + (Math.random()*0.16 - 0.08);
+  flame.style.transform = 'translateX(-50%) scale(' + flameScale + ')';
+}, 250);
 
+/* Accessibility: keyboard open with Enter/Space */
+openBtn.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter' || e.key === ' ') { openBtn.click(); }
+});
+
+/* Prevent accidental horizontal scroll on small screens (fix earlier issue) */
+document.documentElement.style.overflowX = 'hidden';
+</script>
 </body>
 </html>
