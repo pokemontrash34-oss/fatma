@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>💐 Un message du cœur 💖</title>
   <style>
+    /* Styles généraux */
     body {
       margin: 0;
       padding: 0;
       background: linear-gradient(135deg, #fff0f6, #f9f7ff);
       font-family: 'Poppins', sans-serif;
       text-align: center;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Empêche les débordements horizontaux */
     }
 
     h1 {
@@ -23,12 +24,12 @@
     }
 
     .message {
-      max-width: 900px;
+      max-width: 90%;
       margin: 2rem auto;
       padding: 2rem;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       font-size: 1.3rem;
       color: #444;
       line-height: 1.8;
@@ -43,27 +44,29 @@
       text-shadow: 1px 1px 4px rgba(209, 123, 255, 0.3);
     }
 
+    /* Style pour la section des messages de motivation (avec effet verre) */
     .motivational-container {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.3);  /* Semi-transparent white */
+      background: rgba(255, 255, 255, 0.3);
       padding: 15px;
       font-size: 1.4rem;
       color: #ff4081;
       text-align: center;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 20px 20px 0 0;  /* Rounded corners */
-      backdrop-filter: blur(10px);  /* Frosted glass effect */
-      -webkit-backdrop-filter: blur(10px); /* For Safari */
+      border-radius: 20px 20px 0 0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 10;
       transition: all 0.3s ease;
     }
 
     .motivational-container:hover {
-      background: rgba(255, 255, 255, 0.5);  /* Lighter background on hover */
+      background: rgba(255, 255, 255, 0.5);
     }
 
+    /* Animation de fade-in pour le texte */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -74,6 +77,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Génération d'étoiles et de confettis */
     .stars {
       position: absolute;
       top: 0;
@@ -114,13 +118,25 @@
       100% { transform: translateY(600px) rotate(90deg); opacity: 0; }
     }
 
+    /* Styles audio */
     audio {
       display: none;
     }
 
+    /* Responsivité pour les petits écrans */
     @media (max-width: 768px) {
       h1 { font-size: 2.2rem; }
       .message { font-size: 1.1rem; margin: 1rem; padding: 1rem; }
+      .motivational-container {
+        font-size: 1.2rem; /* Réduire la taille du texte sur mobile */
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8rem; }
+      .message { font-size: 1rem; padding: 0.8rem; }
+      .signature { font-size: 1.2rem; }
     }
   </style>
 </head>
