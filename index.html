@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💐 Un message du cœur 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff0f6, #f9f7ff);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d17bff;
+      margin-top: 2rem;
+      text-shadow: 2px 2px 8px rgba(209, 123, 255, 0.3);
+      animation: fadeInDown 2s ease;
+    }
+
+    .message {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      font-size: 1.3rem;
+      color: #444;
+      line-height: 1.8;
+      animation: fadeIn 3s ease;
+    }
+
+    .signature {
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #d17bff;
+      text-shadow: 1px 1px 4px rgba(209, 123, 255, 0.3);
+    }
+
+    .motivational-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.3);  /* Semi-transparent white */
+      padding: 15px;
+      font-size: 1.4rem;
+      color: #ff4081;
+      text-align: center;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 20px 20px 0 0;  /* Rounded corners */
+      backdrop-filter: blur(10px);  /* Frosted glass effect */
+      -webkit-backdrop-filter: blur(10px); /* For Safari */
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .motivational-container:hover {
+      background: rgba(255, 255, 255, 0.5);  /* Lighter background on hover */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #d17bff;
+      border-radius: 50%;
+      animation: fall 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ff4081;
+      border-radius: 50%;
+      animation: confettiFall 3s linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(300px) rotate(45deg); }
+      100% { transform: translateY(600px) rotate(90deg); opacity: 0; }
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .message { font-size: 1.1rem; margin: 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💐 Un message du cœur 💖</h1>
+
+  <div class="message">
+    <p>
+      Aujourd’hui, j’avais juste envie de te dire à quel point je suis fier de toi.  
+      Fier de la personne que tu es devenue, de ta détermination, de ton courage, et de ta lumière.
+    </p>
+
+    <p>
+      Le bac approche, et je sais que c’est pas facile. Il y a la fatigue, le stress, les doutes…  
+      Mais malgré tout ça, tu continues d’avancer. Tu tiens bon, tu gardes la tête haute, et ça, c’est une vraie force.  
+      Peu de gens ont ton mental, ta patience, ton cœur.
+    </p>
+
+    <p>
+      Tu mérites tellement de réussir, pas juste parce que tu travailles dur,  
+      mais parce que tu le fais avec sincérité, avec passion, sans jamais tricher avec toi-même.  
+      Et même dans les moments où t’as envie de tout lâcher, tu continues à sourire —  
+      c’est ce sourire-là qui montre à quel point t’es exceptionnelle.
+    </p>
+
+    <p>
+      Peu importe le résultat, souviens-toi que tu as déjà gagné.  
+      Gagné en maturité, en force, en confiance.  
+      Le bac, c’est juste une étape. La vie, elle, t’attend avec des milliers de réussites à ton nom.
+    </p>
+
+    <p>
+      Alors lève la tête, respire, et avance sans peur.  
+      Parce que tout ce que tu cherches est déjà en toi.  
+      Et moi, je serai toujours là, à te soutenir, à croire en toi, à te rappeler à quel point tu es capable de tout.
+    </p>
+
+    <p>
+      Continue de briller, continue d’être toi.  
+      Tu rends ta famille fière, et moi encore plus.
+    </p>
+
+    <div class="signature">
+      💜 Ton cousin qui t’admire et qui t’aime,<br>
+      <strong>Cheikh</strong>
+    </div>
+  </div>
+
+  <div class="stars"></div>
+
+  <!-- Zone des petits messages de motivation avec effet verre -->
+  <div class="motivational-container" id="motivationalMessages">
+    <p id="message"></p>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_5f289a0503.mp3?filename=soft-piano-ambient-112191.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Générer les étoiles
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.querySelector('.stars').appendChild(star);
+      setTimeout(() => star.remove(), 10000);
+    }
+    setInterval(createStar, 200);
+
+    // Générer les confettis
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDuration = 3 + Math.random() * 2 + 's';
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 3000);
+    }
+    setInterval(createConfetti, 300);
+
+    // Petits messages de motivation
+    const messages = [
+      "Tu as tout ce qu’il faut pour réussir, n’oublie jamais ça !",
+      "Les défis te rendent plus forte, tu es prête pour le grand saut !",
+      "Tout le monde est fier de toi, et ça, c’est déjà une victoire.",
+      "Rappelle-toi, la réussite est dans ton cœur.",
+      "Ne lâche rien, tu es sur le bon chemin !",
+      "La réussite, c’est un pas après l’autre, et tu es sur la bonne voie."
+    ];
+
+    function showMotivationalMessage() {
+      const messageElement = document.getElementById("message");
+      messageElement.innerText = messages[Math.floor(Math.random() * messages.length)];
+    }
+
+    setInterval(showMotivationalMessage, 4000); // Changer les messages toutes les 4 secondes
+  </script>
+
+</body>
+</html>
